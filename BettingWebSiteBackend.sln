@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchOddsApi", "MatchOddsApi\MatchOddsApi.csproj", "{501CD62B-29E7-4EC9-B2A6-C999C8457AAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{03AF2E0B-1A6A-443E-882A-6A2E30A8E82C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{501CD62B-29E7-4EC9-B2A6-C999C8457AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501CD62B-29E7-4EC9-B2A6-C999C8457AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501CD62B-29E7-4EC9-B2A6-C999C8457AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501CD62B-29E7-4EC9-B2A6-C999C8457AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03AF2E0B-1A6A-443E-882A-6A2E30A8E82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03AF2E0B-1A6A-443E-882A-6A2E30A8E82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03AF2E0B-1A6A-443E-882A-6A2E30A8E82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03AF2E0B-1A6A-443E-882A-6A2E30A8E82C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50CBE75B-1F36-4E91-8431-7B34A9BEFCC8}
+	EndGlobalSection
+EndGlobal
