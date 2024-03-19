@@ -12,5 +12,10 @@ namespace Shared
         
         public const string UserInterface_matchoddsresponseEventQueue = "UserInterface_matchoddsresponseEventQueue";
 
+        public const string CustomerTransactionsApi_CustomeraddEventQueue = "consumeraddEventQueue";
+
+        public const string CustomerTransactionsApi_CustomerCheckRequest = "CustomerTransactionsApi_CustomerCheckRequest";
+
+        public const string UserInterface_CustomerCheckResponse = "UserInterface_CustomerCheckResponse";
     }
 }
