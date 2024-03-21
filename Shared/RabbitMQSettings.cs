@@ -17,5 +17,11 @@ namespace Shared
         public const string CustomerTransactionsApi_CustomerCheckRequest = "CustomerTransactionsApi_CustomerCheckRequest";
 
         public const string UserInterface_CustomerCheckResponse = "UserInterface_CustomerCheckResponse";
+
+        public const string BasketApi_ItemAddqueue = "BasketApi_ItemAddqueue";
+
+        public const string BasketApi_BasketItemGetRepuestEvent = "BasketApi_BasketItemGetRepuestEvent";
+
+        public const string UserInterface_BasketItemGetResponseEvent = "BasketApi_BasketItemGetRepuestEvent";
     }
 }
