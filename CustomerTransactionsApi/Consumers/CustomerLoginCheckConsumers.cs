@@ -23,6 +23,7 @@ namespace CustomerTransactionsApi.Consumers
             Products pr = await appDbContext.Products
             .Where(p => p.HumanIdentity == context.Message.Tc && p.Password == context.Message.Password).FirstOrDefaultAsync();
 
+
             if (pr == null)
             {
                 response.IsValid = false;
@@ -31,6 +32,10 @@ namespace CustomerTransactionsApi.Consumers
             }
             else if (pr != null) {
                 response.IsValid = true;
+                if (pr.TotalPrice != null)
+                {
+                    response.TotalPrice = pr.TotalPrice;
+                }
                 await publishEndpoint.Publish(response);
             }
         }

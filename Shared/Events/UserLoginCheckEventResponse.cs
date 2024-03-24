@@ -9,5 +9,7 @@ namespace Shared.Events
     public class UserLoginCheckEventResponse
     {
         public bool IsValid { get; set; }
+
+        public string TotalPrice { get; set; }
     }
 }
