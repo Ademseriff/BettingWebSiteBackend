@@ -25,5 +25,8 @@ namespace Shared
         public const string UserInterface_BasketItemGetResponseEvent = "BasketApi_BasketItemGetRepuestEvent";
 
         public const string PlayedCouponsApi_ComplatedEventQueue = "PlayedCouponsApi_ComplatedEventQueue";
+
+        public const string MoneyTransactionsApi_MoneyDecreaseEventqueue = "MoneyTransactionsApi_MoneyDecreaseEventqueue";
+        
     }
 }

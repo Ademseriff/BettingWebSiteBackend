@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerTransactionsApi", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketApi", "BasketApi\BasketApi.csproj", "{B06DB7BD-5B59-4A0F-843D-30C7272D0E0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayedCouponsApi", "PlayedCouponsApi\PlayedCouponsApi.csproj", "{D9C66974-739F-44DC-877F-A7444F083968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayedCouponsApi", "PlayedCouponsApi\PlayedCouponsApi.csproj", "{D9C66974-739F-44DC-877F-A7444F083968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTransactionsApi", "MoneyTransactionsApi\MoneyTransactionsApi.csproj", "{A0E7E233-6F64-41DF-B741-DEE282CC2D4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{D9C66974-739F-44DC-877F-A7444F083968}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C66974-739F-44DC-877F-A7444F083968}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9C66974-739F-44DC-877F-A7444F083968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E7E233-6F64-41DF-B741-DEE282CC2D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E7E233-6F64-41DF-B741-DEE282CC2D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E7E233-6F64-41DF-B741-DEE282CC2D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E7E233-6F64-41DF-B741-DEE282CC2D4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
