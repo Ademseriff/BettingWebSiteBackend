@@ -1,6 +1,8 @@
 
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using MoneyTransactionsApi.Consumers;
+using MoneyTransactionsApi.Data;
 using MoneyTransactionsApi.WorkerEventDb;
 using Shared;
 
@@ -12,6 +14,9 @@ namespace MoneyTransactionsApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            var connectionstring = builder.Configuration.GetConnectionString("AppDbConnectionString");
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionstring, ServerVersion.AutoDetect(connectionstring)));
 
             builder.Services.AddMassTransit(configurator =>
             {
@@ -25,6 +30,7 @@ namespace MoneyTransactionsApi
                 });
             });
             builder.Services.AddSingleton<PublisEventDb>();
+            builder.Services.AddSingleton<SubscuriberEventDb>();
             var app = builder.Build();
 
             

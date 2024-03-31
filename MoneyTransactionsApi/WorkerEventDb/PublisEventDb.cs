@@ -23,7 +23,7 @@ namespace MoneyTransactionsApi.WorkerEventDb
                 EventData eventData = new(Uuid.NewUuid(), moneyDecreaseEvent.GetType().Name, JsonSerializer.SerializeToUtf8Bytes(moneyDecreaseEvent));
 
                 await client.AppendToStreamAsync(
-                    streamName: streamName + "decreaseMoney",
+                    streamName: streamName,
                     expectedState: StreamState.Any,
                     eventData: new[] { eventData }
                 );
