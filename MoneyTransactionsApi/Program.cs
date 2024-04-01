@@ -20,16 +20,19 @@ namespace MoneyTransactionsApi
 
             builder.Services.AddMassTransit(configurator =>
             {
-
+                //MoneyIncreaseEventConsumer
                 configurator.AddConsumer<MoneyDecreaseEventConsumer>();
+                configurator.AddConsumer<MoneyIncreaseEventConsumer>();
                 configurator.UsingRabbitMq((contex, _configure) =>
                 {
                     _configure.Host(builder.Configuration["RabbitMq"]);
                     _configure.ReceiveEndpoint(RabbitMQSettings.MoneyTransactionsApi_MoneyDecreaseEventqueue, e => e.ConfigureConsumer<MoneyDecreaseEventConsumer>(contex));
-
+                    _configure.ReceiveEndpoint(RabbitMQSettings.MoneyTransactionApi_AddMoneyEventqueue, e => e.ConfigureConsumer<MoneyIncreaseEventConsumer>(contex));
                 });
             });
+          
             builder.Services.AddSingleton<PublisEventDb>();
+            builder.Services.AddSingleton<PublishEventDbPlus>();
             builder.Services.AddSingleton<SubscuriberEventDb>();
             var app = builder.Build();
 

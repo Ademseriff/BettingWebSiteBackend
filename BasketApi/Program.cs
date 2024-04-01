@@ -20,14 +20,16 @@ namespace BasketApi
 
             builder.Services.AddMassTransit(configurator =>
             {
-                //CustomerLoginCheckConsumers
+                //BasketClearEventConsumer
                 configurator.AddConsumer<BasketAddEventConsumer>();
                 configurator.AddConsumer<BasketItemGetRepuestEventConsumer>();
+                configurator.AddConsumer<BasketClearEventConsumer>();
                 configurator.UsingRabbitMq((contex, _configure) =>
                 {
                     _configure.Host(builder.Configuration["RabbitMq"]);
                     _configure.ReceiveEndpoint(RabbitMQSettings.BasketApi_ItemAddqueue, e => e.ConfigureConsumer<BasketAddEventConsumer>(contex));
                     _configure.ReceiveEndpoint(RabbitMQSettings.BasketApi_BasketItemGetRepuestEvent, e => e.ConfigureConsumer<BasketItemGetRepuestEventConsumer>(contex));
+                    _configure.ReceiveEndpoint(RabbitMQSettings.BasketApi_ClearBasketEventqueue, e => e.ConfigureConsumer<BasketClearEventConsumer>(contex));
                 });
             });
 

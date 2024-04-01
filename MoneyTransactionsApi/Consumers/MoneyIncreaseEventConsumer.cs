@@ -4,39 +4,35 @@ using MoneyTransactionsApi.Data;
 using MoneyTransactionsApi.ViewModel;
 using MoneyTransactionsApi.WorkerEventDb;
 using Shared.Events;
-using System.Text.Json;
 
 namespace MoneyTransactionsApi.Consumers
 {
-    public class MoneyDecreaseEventConsumer : IConsumer<MoneyDecreaseEvent>
+    public class MoneyIncreaseEventConsumer : IConsumer<MoneyIncreaseEvent>
     {
-        private readonly PublisEventDb publisEventDb;
-        private readonly SubscuriberEventDb subscuriberEventDb;
+        private readonly PublishEventDbPlus publishEventDbPlus;
         private readonly AppDbContext appDbContext;
 
-        public MoneyDecreaseEventConsumer(PublisEventDb publisEventDb, SubscuriberEventDb subscuriberEventDb, AppDbContext appDbContext)
+        public MoneyIncreaseEventConsumer(PublishEventDbPlus publishEventDbPlus,AppDbContext appDbContext)
         {
-            this.publisEventDb = publisEventDb;
-            this.subscuriberEventDb = subscuriberEventDb;
+            this.publishEventDbPlus = publishEventDbPlus;
             this.appDbContext = appDbContext;
         }
 
-        public async Task Consume(ConsumeContext<MoneyDecreaseEvent> context)
+        public async Task Consume(ConsumeContext<MoneyIncreaseEvent> context)
         {
-           await publisEventDb.Publis(context.Message.Tc, context.Message);
-           await Task.Delay(1000);
+            await publishEventDbPlus.Publis(context.Message.Tc, context.Message);
+            await Task.Delay(1000);
 
             Products products = await appDbContext.Products.FirstOrDefaultAsync(o => o.HumanIdentity == context.Message.Tc);
 
-            if(products != null)
+            if (products != null)
             {
                 int totalPrice = int.Parse(products.TotalPrice);
                 int money = int.Parse(context.Message.Money);
-                totalPrice -= money;
+                totalPrice += money;
                 products.TotalPrice = totalPrice.ToString();
                 await appDbContext.SaveChangesAsync();
             }
-            
 
         }
     }
