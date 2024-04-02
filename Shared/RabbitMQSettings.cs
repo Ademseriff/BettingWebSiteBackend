@@ -35,5 +35,9 @@ namespace Shared
         public const string BasketApi_ClearBasketEventqueue = "BasketApi_ClearBasketEventqueue";
 
         public const string MoneyTransactionApi_AddMoneyEventqueue = "MoneyTransactionApi_AddMoneyEventqueue";
+
+        public const string PlayedCouponsApi_CouponsComplatedEventqueue = "PlayedCouponsApi_CouponsComplatedEventqueue";
+
+        public const string PlayedCouponsApi_CouponsFailedEventqueue = "PlayedCouponsApi_CouponsFailedEventqueue";
     }
 }
