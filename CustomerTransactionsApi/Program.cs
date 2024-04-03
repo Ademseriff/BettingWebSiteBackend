@@ -23,9 +23,10 @@ namespace CustomerTransactionsApi
 
             builder.Services.AddMassTransit(configurator =>
             {
-                //CustomerLoginCheckConsumers
+                //MailGetEventRequestConsumer
                 configurator.AddConsumer<AddCustomerConsuners>();
                 configurator.AddConsumer<CustomerLoginCheckConsumers>();
+                configurator.AddConsumer<MailGetEventRequestConsumer>();
                 configurator.UsingRabbitMq((contex, _configure) =>
                 {
                     _configure.Host(builder.Configuration["RabbitMq"]);
@@ -33,6 +34,9 @@ namespace CustomerTransactionsApi
                     _configure.ReceiveEndpoint(RabbitMQSettings.CustomerTransactionsApi_CustomeraddEventQueue, e => e.ConfigureConsumer<AddCustomerConsuners>(contex));
 
                     _configure.ReceiveEndpoint(RabbitMQSettings.CustomerTransactionsApi_CustomerCheckRequest, e => e.ConfigureConsumer<CustomerLoginCheckConsumers>(contex));
+
+
+                    _configure.ReceiveEndpoint(RabbitMQSettings.CustomerTransactionsApi_MailGetEventQueue, e => e.ConfigureConsumer<MailGetEventRequestConsumer>(contex));
                 });
             });
 

@@ -16,6 +16,8 @@ namespace Shared.Events
         public string Name { get; set; }
         public string Surname { get; set; }
 
+        public string EMail { get; set; }
+
         public string TotalPrice { get; set; }
     }
 }

@@ -39,5 +39,15 @@ namespace Shared
         public const string PlayedCouponsApi_CouponsComplatedEventqueue = "PlayedCouponsApi_CouponsComplatedEventqueue";
 
         public const string PlayedCouponsApi_CouponsFailedEventqueue = "PlayedCouponsApi_CouponsFailedEventqueue";
+
+        public const string MailApi_MailSentEventqueue = "MailApi_MailSentEventqueue";
+
+        public const string CustomerTransactionsApi_MailGetEventQueue = "CustomerTransactionsApi_MailGetEventQueue";
+
+        public const string CustomerTransactionsApi_MailGetEventResponseQueue = "CustomerTransactionsApi_MailGetEventResponseQueue";
+
+        public const string BettingWebSite_MailGetEventResponseQueue = "BettingWebSite_MailGetEventResponseQueue";
+
+        public const string UserInterface_MailGetEventResponseQueue = "UserInterface_MailGetEventResponseQueue";
     }
 }

@@ -26,6 +26,7 @@ namespace CustomerTransactionsApi.Consumers
                 product.Name = context.Message.Name;
                 product.Surname = context.Message.Surname;
                 product.Password = context.Message.Password;
+                product.EMail = context.Message.EMail;
                 product.TotalPrice = "0";
                 await _appContext.AddAsync(product);
                 await _appContext.SaveChangesAsync();
