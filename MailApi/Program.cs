@@ -1,8 +1,10 @@
 
+using HealthChecks.UI.Client;
 using MailApi.Consumers;
 using MailApi.Services.Abstractions;
 using MailApi.Services.Concretes;
 using MassTransit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Shared;
 
 namespace MailApi
@@ -13,7 +15,8 @@ namespace MailApi
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddScoped<IMailService, MailService>();
-
+            builder.Services.AddHealthChecks();
+         
 
             builder.Services.AddMassTransit(configurator =>
             {
@@ -28,7 +31,11 @@ namespace MailApi
 
 
             var app = builder.Build();
-
+     
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
             app.Run();
         }

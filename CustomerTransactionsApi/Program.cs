@@ -2,7 +2,9 @@
 using CustomerTransactionsApi.Consumers;
 using CustomerTransactionsApi.Data;
 using CustomerTransactionsApi.Models;
+using HealthChecks.UI.Client;
 using MassTransit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Shared;
 
@@ -20,6 +22,8 @@ namespace CustomerTransactionsApi
             var connectionstring = builder.Configuration.GetConnectionString("AppDbConnectionString");
             builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionstring,ServerVersion.AutoDetect(connectionstring)));
 
+            builder.Services.AddHealthChecks()
+         .AddMySql("Server=localhost;Port=100;Database=Products;User=root;Password=test123");
 
             builder.Services.AddMassTransit(configurator =>
             {
@@ -43,7 +47,10 @@ namespace CustomerTransactionsApi
 
             var app = builder.Build();
 
-            
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
             app.Run();
         }

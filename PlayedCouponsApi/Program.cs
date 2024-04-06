@@ -1,5 +1,7 @@
 
+using HealthChecks.UI.Client;
 using MassTransit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using PlayedCouponsApi.Consumers;
 using PlayedCouponsApi.Services;
 using Shared;
@@ -12,6 +14,7 @@ namespace PlayedCouponsApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddHealthChecks().AddMongoDb("mongodb://localhost:27018");
 
 
             builder.Services.AddMassTransit(configurator =>
@@ -36,7 +39,10 @@ namespace PlayedCouponsApi
             builder.Services.AddSingleton<MongoDBService>();
             var app = builder.Build();
 
-          
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
             app.Run();
         }

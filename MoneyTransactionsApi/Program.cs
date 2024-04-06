@@ -1,5 +1,7 @@
 
+using HealthChecks.UI.Client;
 using MassTransit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using MoneyTransactionsApi.Consumers;
 using MoneyTransactionsApi.Data;
@@ -17,6 +19,9 @@ namespace MoneyTransactionsApi
 
             var connectionstring = builder.Configuration.GetConnectionString("AppDbConnectionString");
             builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionstring, ServerVersion.AutoDetect(connectionstring)));
+
+            builder.Services.AddHealthChecks()
+        .AddMySql("Server=localhost;Port=100;Database=Products;User=root;Password=test123");
 
             builder.Services.AddMassTransit(configurator =>
             {
@@ -36,7 +41,11 @@ namespace MoneyTransactionsApi
             builder.Services.AddSingleton<SubscuriberEventDb>();
             var app = builder.Build();
 
-            
+
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
             app.Run();
         }
