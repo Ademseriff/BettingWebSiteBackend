@@ -32,7 +32,14 @@ namespace MoneyTransactionsApi.Consumers
             {
                 int totalPrice = int.Parse(products.TotalPrice);
                 int money = int.Parse(context.Message.Money);
-                totalPrice -= money;
+                if (money > totalPrice)
+                {
+                    totalPrice = 0;
+                }
+                else
+                {
+                    totalPrice -= money;
+                }
                 products.TotalPrice = totalPrice.ToString();
                 await appDbContext.SaveChangesAsync();
             }
